@@ -1,0 +1,53 @@
+
+The Scenario
+
+• Alice wants to receive a secret file safely.
+• Bob has the secret file (secret.txt) and needs to encrypt it so only Alice can read it.
+
+Step 1: Alice Generates Her Key Pair
+
+Alice must first create her public and private keys on her computer.
+bash
+gpg --full-generate-key
+1. Select key type: Press Enter to accept the default option ((1) RSA and RSA).
+2. Select keysize: Type 4096 for strong security and press Enter.
+3. Select expiration: Press Enter if you want the key to never expire (or type 1y for one year). Confirm by typing y.
+4. Enter User ID: Alice enters her real name, email address (alice@example.com), and an optional comment. She types O (for Okay) to confirm.
+5. Set a Passphrase: A popup will ask Alice to create a password. This protects her private key.
+
+Step 2: Alice Exports Her Public Key
+
+To let Bob encrypt files for her, Alice needs to share her Public Key. She exports it into a shareable text file:
+bash
+gpg --armor --export alice@example.com > alice_public.asc
+
+• Note: The --armor flag turns the key into plain text so Alice can easily email it or text it to Bob.
+
+• Action: Alice sends the alice_public.asc file to Bob.
+
+Step 3: Bob Imports Alice's Public Key
+
+Bob receives the file on his own computer. Before he can encrypt anything, he must add Alice's key to his GPG keyring:
+bash
+gpg --import alice_public.asc
+
+Bob will see a confirmation message stating that 1 key has been processed and imported.
+
+Step 4: Bob Encrypts the File
+
+Now, Bob creates his secret file (secret.txt) and encrypts it using Alice's email address as the recipient identifier:
+bash
+gpg --encrypt --recipient alice@example.com secret.txt
+
+• What happens: GPG creates a new file called secret.txt.gpg. This file contains gibberish text that no one can read without Alice's private key.
+
+• Action: Bob safely sends secret.txt.gpg to Alice via standard email or file sharing.
+
+Step 5: Alice Decrypts the File
+
+Once Alice receives the encrypted file, she uses her Private Key (which never left her computer) to unlock it:
+bash
+gpg --decrypt secret.txt.gpg > decrypted_secret.txt
+
+• GPG will prompt Alice to enter the passphrase she created in Step 1.
+• The file unlocks successfully, creating decrypted_secret.txt with the original content intact.
