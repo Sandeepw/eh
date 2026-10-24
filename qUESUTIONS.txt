@@ -21,3 +21,5 @@ Create a file with a payload to provide reverse shell using msfvenom for Linux. 
 Capture the flag integrated inside the image using 2 images given. Use crypttool. Image names are clue1.jpg and cluse2.jpg.
 8.
 Create a user by name manager. Create PGP keys for the user. Share the key with the admin1 user. Create a file and encrypt it using manager public key. Display the file opens with manager user.
+9. 
+Create a exe file using msfvenom and use meterpreter payload. Send the file on the Windows VM. Execute the file. Display meterpreter session created on the Kali Linux VM. Take a screenshot of the windows VM. Try to display usernames and passwords of Windows VM. 
