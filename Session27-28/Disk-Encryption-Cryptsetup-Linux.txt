@@ -1,4 +1,4 @@
-Sgut down the VM. Attach an additional hard disk of 20GB to the Virtual machine. Power on the virtual machine. 
+Shut down the VM. Attach an additional hard disk of 20GB to the Virtual machine. Power on the virtual machine. 
 
 Install cryptsetup if it is not installed.
 
